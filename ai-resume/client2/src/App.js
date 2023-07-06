@@ -10,12 +10,8 @@ const MyComponent = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, user => {
-            if (user) {
-                setUser(user);
-            } else {
-                setUser(null);
-            }
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user || null);
         });
 
         // Cleanup subscription on unmount
@@ -58,10 +54,35 @@ const MyComponent = () => {
     } else {
         return (
             <div>
-                <SignInButton signIn={signIn} /> {/* Pass the signIn function as a prop to the SignInButton */}
+                <SignInButton signIn={signIn} />
             </div>
         );
     }
+};
+
+export const App = () => {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        fetch("/members")
+            .then(res => res.json())
+            .then(data => {
+                setData(data);
+                console.log(data);
+            });
+    }, []);
+
+    return (
+        <div>
+            {data ? (
+                data.members.map((member, index) => (
+                    <p key={index}>{member}</p>
+                ))
+            ) : (
+                <p>loading...</p>
+            )}
+        </div>
+    );
 };
 
 export default MyComponent;

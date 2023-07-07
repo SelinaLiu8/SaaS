@@ -1,36 +1,53 @@
-import React, { ReactNode } from 'react';
 import Link from 'next/link';
-import styles from './navbar.module.css';
+import Image from 'next/image';
+import { useContext } from 'react';
+import { UserContext } from '../../lib/context';
 
-const Navigation = () => {
+// Top navbar
+export default function Navbar({ children }) {
+  const user = useContext(UserContext);
+  console.log(user);
+
   return (
-    <nav>
+    <nav className="navbar">
       <ul>
         <li>
-          <Link href="/">Home</Link>
+          <Link href="/">
+            <button className="btn-logo">ResumAI</button>
+          </Link>
         </li>
-        <li>
-          <Link href="/about">About</Link>
-        </li>
-        <li>
-          <Link href="/contact">Contact</Link>
-        </li>
+
+        {/* user is signed-in and has username */}
+        {user.user && (
+          <>
+            <li className="push-left">
+              <Link href="/admin">
+                <button className="btn-blue">Generate Resume</button>
+              </Link>
+            </li>
+            <li>
+              <Link href={`/${user}`}>
+                {user && user.photoURL && <Image src={user.photoURL} alt={user} width={500} height={500}/>}
+              </Link>
+            </li>
+            <li>
+            <Link href="/enter">
+              <button className="btn-blue">Log out</button>
+            </Link>
+          </li>
+          </>
+        )}
+
+        {/* user is not signed OR has not created username */}
+        {!user.user && (
+          <li>
+            <Link href="/enter">
+              <button className="btn-blue">Log in</button>
+            </Link>
+          </li>
+        )}
       </ul>
+      {children}
     </nav>
   );
-};
-
-interface LayoutProps {
-  children: ReactNode;
 }
-
-export default function Layout({ children }: LayoutProps) {
-  return (
-    <div>
-      <Navigation />
-      {children}
-    </div>
-  );
-}
-
-

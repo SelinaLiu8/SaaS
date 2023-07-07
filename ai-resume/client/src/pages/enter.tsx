@@ -1,31 +1,18 @@
-import { useEffect } from 'react'; // Added import for useEffect
 import { auth, googleAuthProvider } from '../../lib/firebase';
 import { signInWithPopup } from 'firebase/auth';
+import Image from 'next/image';
+import { useContext } from 'react';
+import { UserContext } from '../../lib/context';
 
-interface PropsType {
-  // Define the required props and their types here
-}
-
-export default function Enter(props: PropsType) {
-  const user = null;
-  const username = null;
+export default function Enter() {
+  const user = useContext(UserContext);
 
   // 1. user signed out <SignInButton />
   // 2. user signed in, but missing username <UsernameForm />
   // 3. user signed in, has username <SignOutButton />
-  useEffect(() => {
-    // Add code to listen for user authentication state changes here
-    // You can update the 'user' and 'username' states accordingly
-    // Example code: auth.onAuthStateChanged((user) => { /* update user and username states */ });
-  }, []);
-
   return (
     <main>
-      {user ? (
-        !username ? <UsernameForm /> : <SignOutButton />
-      ) : (
-        <SignInButton />
-      )}
+      {user.user ? <SignOutButton /> : <SignInButton />}
     </main>
   );
 }
@@ -34,21 +21,28 @@ export default function Enter(props: PropsType) {
 function SignInButton() {
   const signInWithGoogle = async () => {
     await signInWithPopup(auth, googleAuthProvider);
+
   };
 
   return (
     <button className="btn-google" onClick={signInWithGoogle}>
-      <img src={'google.png'} alt="Google logo" /> Sign in with Google
+      <div style={{ position: 'relative', width: '50px', height: '50px', marginRight: '10px' }}>
+        <Image src={'/google.png'} alt="Google sign-in" layout="fill" objectFit="contain"/>
+      </div>
+      <span>Sign in with Google</span>
     </button>
   );
 }
 
-// Sign out button
 function SignOutButton() {
-  return <button onClick={() => auth.signOut()}>Sign Out</button>;
-}
+  const signOut = async () => {
+    try {
+      await auth.signOut();
+      console.log("Signed out successfully");
+    } catch (error) {
+      console.error("Error signing out", error);
+    }
+  };
 
-function UsernameForm() {
-  return null;
+  return <button onClick={signOut}>Sign Out</button>;
 }
-

@@ -260,3 +260,13 @@ input[type="file"] {
 }
 
 .hidden { display:  none; }
+
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+}

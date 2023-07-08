@@ -3,8 +3,6 @@ import Image from 'next/image';
 import { useContext } from 'react';
 import { UserContext } from '../../lib/context';
 import { useUserData } from '../../lib/hooks'; // Assuming the hook is defined here
-import NavItem from './NavItem';
-import DropdownMenu from './DropdownMenu';
 
 // Top navbar
 export default function Navbar({ children }) {
@@ -33,9 +31,11 @@ export default function Navbar({ children }) {
               </Link>
             </li>
             <li>
-              <NavItem icon={user?.photoURL ? <Image src={user?.photoURL} alt="User Profile" width={50} height={50} /> : <Image src={'/random-avatar.png'} alt="User Profile" width={50} height={50} />}>
-                <DropdownMenu></DropdownMenu>
-              </NavItem>
+              <Link href={`/${username}`}>
+                {user?.photoURL && (
+                  <Image src={user.photoURL} alt={`${username}'s profile picture`} width={500} height={500} />
+                ) || '/random-avatar.png'}
+              </Link>
             </li>
           </>
         )}

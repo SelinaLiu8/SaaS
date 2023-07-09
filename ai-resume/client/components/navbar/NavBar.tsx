@@ -42,11 +42,20 @@ export default function Navbar({ children }) {
 
         {/* user is not signed OR has not created username */}
         {!user && (
-          <li>
-            <Link href="/enter">
-              <button className="btn-blue">Log in</button>
-            </Link>
-          </li>
+          <>
+            <li>
+              <Link href="/enter">
+                <button className="btn-blue">Log in</button>
+              </Link>
+            </li>
+            <li>
+              <Link href="/join">
+                <button className="btn-blue">Sign up</button>
+              </Link>
+            </li>
+          </>
+ 
+          
         )}
       </ul>
       {children}

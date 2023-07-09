@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useContext, ReactNode } from 'react';
-import { UserContext } from '../../lib/context';
-import { useUserData } from '../../lib/hooks'; // Assuming the hook is defined here
-import NavItem from '../Login/ProfileImg';
-import DropdownMenu from '../Login/DropdownMenu';
+import { UserContext } from '../lib/context';
+import { useUserData } from '../lib/hooks'; // Assuming the hook is defined here
+import NavItem from './ProfileImg';
+import DropdownMenu from './DropdownMenu';
 
 // Top navbar
 export default function Navbar({ children }: { children: ReactNode }) {
@@ -12,7 +12,7 @@ export default function Navbar({ children }: { children: ReactNode }) {
     <nav className="navbar">
       <ul>
         <li>
-          <a href="/home" className="btn-logo">
+          <a href="/" className="btn-logo">
             CL.AI
           </a>
         </li>

@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import NavBar from '../../components/navbar/NavBar'
+import NavBar from '../../components/NavBar'
 import { UserContext } from '../../lib/context';
 import { useUserData } from '../../lib/hooks';
 import { Toaster } from 'react-hot-toast';

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useContext, ReactNode } from 'react';
-import { UserContext } from '../../lib/context';
-import { useUserData } from '../../lib/hooks';
+import { UserContext } from '../lib/context';
+import { useUserData } from '../lib/hooks';
 import ProfileItem from './ProfileImg';
 import DropdownMenu from './DropdownMenu'; 
 

@@ -1,5 +1,6 @@
 import AuthCheck from '../../../components/AuthCheck';
 import Image from 'next/image';
+import { useUserData } from '../../../lib/hooks';
 
 export default function AdminPostsPage(props) {
     const { user, username } = useUserData();

@@ -1,3 +1,4 @@
+import React, { ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useContext } from 'react';
@@ -5,7 +6,7 @@ import { UserContext } from '../../lib/context';
 import { useUserData } from '../../lib/hooks'; // Assuming the hook is defined here
 
 // Top navbar
-export default function Navbar({ children }) {
+export default function Navbar({ children }: { children: ReactNode }) {
   const { user, username } = useUserData();
 
   return (

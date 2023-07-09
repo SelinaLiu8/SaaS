@@ -1,7 +1,13 @@
 import Link from 'next/link';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, ReactNode } from 'react';
 
-export default function NavItem(props) {
+interface MyComponentProps {
+  // Define the properties and their types here
+  icon: string;
+  children: ReactNode;
+}
+
+export default function NavItem(props: MyComponentProps) {
   const [open, setOpen] = useState(false);
 
   return (

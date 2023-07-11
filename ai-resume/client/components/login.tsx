@@ -20,7 +20,9 @@ export default function Login({ children }: { children: ReactNode }) {
                 </Link>
               </li>
               <li>
-                <UserProfileImage user={user} />
+                <Link href="/admin">
+                  <UserProfileImage user={user} />
+                </Link>
               </li>
             </ul>
             </>

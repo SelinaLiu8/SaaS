@@ -8,28 +8,35 @@ import DropdownMenu from './DropdownMenu';
 import Login from './login'
 import dynamic from 'next/dynamic'
 
+interface LoginProps {
+  className: string;
+  children: ReactNode;
+}
+
+
 
 // Top navbar
-const Navbar = ({children}) => {
+const Navbar :React.FC<LoginProps> = ({ className, children }) => {
   return (
     <nav className="navbar">
       <ul>
-        <li>
-          <Link href="/" className="btn-logo">CL.AI</Link>
+        <li className='nav-list'>
+          <Link href="/" className="logo nav-item">CL.AI</Link>
         </li>
         <li>
-          <Link href="/about">About Us</Link>
+          <Link href="/about" className='nav-item'>About Us</Link>
         </li>
         <li>
-          <Link href="/subscription">Subscription</Link>
+          <Link href="/subscription" nav-item>Subscription</Link>
         </li>
         <li>
-          <button>GENERATE</button>
+          <Link href="/" className="nav-item"><button className='btn generate-btn'>GENERATE</button></Link>
         </li>
         <li>
-          <Link href='/enter'><Login/></Link>
+          <Login {...className} children={undefined} className='nav-item'/>
         </li>
       </ul>
+      {children}
     </nav>
   );
 }

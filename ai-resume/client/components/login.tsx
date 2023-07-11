@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useContext, ReactNode } from 'react';
 import { UserContext } from '../lib/context';
 import { useUserData } from '../lib/hooks';
-import ProfileItem from './ProfileImg';
+import UserProfileImage from './ProfileImg';
 import DropdownMenu from './DropdownMenu'; 
 
 export default function Login({ children }: { children: ReactNode }) {
@@ -20,7 +20,7 @@ export default function Login({ children }: { children: ReactNode }) {
                 </Link>
               </li>
               <li>
-                <ProfileItem icon={user?.photoURL ? <Image src={user?.photoURL} alt="User Profile" width={50} height={50} /> : <Image src={'/random-avatar.png'} alt="User Profile" width={50} height={50} />}/>
+                <UserProfileImage user={user} />
               </li>
             </ul>
             </>

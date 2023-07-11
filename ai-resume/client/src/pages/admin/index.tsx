@@ -1,15 +1,26 @@
+import { useContext } from 'react';
 import AuthCheck from '../../../components/AuthCheck';
-import Image from 'next/image';
 import { useUserData } from '../../../lib/hooks';
+import UserProfileImage from '../../../components/ProfileImg';
+import ResetPasswordButton from '../../../components/ResetPassword';
+import ResumeUploader from '../../../components/ResumeUploader';
 
-export default function AdminPostsPage(props) {
+export default function AdminPage(props) {
     const { user, username } = useUserData();
-  return (
-    <main>
-      <AuthCheck>
-        <p>Welcome to the Admin!</p>
-        {user?.photoURL ? <Image src={user?.photoURL} alt="User Profile" width={50} height={50} /> : <Image src={'/random-avatar.png'} alt="User Profile" width={50} height={50} />}
-      </AuthCheck>
-    </main>
-  );
+
+    return (
+        <main>
+            <AuthCheck>
+                <p>Welcome to the Admin!</p>
+                <UserProfileImage user={user} />
+                <p>Email: {username || user?.email}</p>
+                {
+                    user?.providerData[0]?.providerId === 'password' && <ResetPasswordButton user={user} />
+                }
+                {
+                  user && <ResumeUploader user={user} />
+                }
+            </AuthCheck>
+        </main>
+    );
 }

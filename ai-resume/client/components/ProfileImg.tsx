@@ -1,21 +1,7 @@
-import Link from 'next/link';
-import React, { useState, useEffect, useRef, ReactNode } from 'react';
+import Image from 'next/image';
 
-interface MyComponentProps {
-  // Define the properties and their types here
-  icon: string;
-  children: ReactNode;
-}
-
-export default function NavItem(props: MyComponentProps) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <li className="nav-item">
-      <a href="#" className="icon-button" onClick={() => setOpen(!open)}>
-        {props.icon}
-      </a>
-      {open && props.children}
-    </li>
-  );
+export default function UserProfileImage({ user }) {
+    return user?.photoURL ? 
+        <Image src={user?.photoURL} alt="User Profile" width={50} height={50} /> :
+        <Image src={'/random-avatar.png'} alt="User Profile" width={50} height={50} />;
 }

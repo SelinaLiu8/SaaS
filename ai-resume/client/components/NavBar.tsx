@@ -10,7 +10,7 @@ import dynamic from 'next/dynamic'
 
 
 // Top navbar
-const Navbar = () => {
+const Navbar = ({children}) => {
   return (
     <nav className="navbar">
       <ul>

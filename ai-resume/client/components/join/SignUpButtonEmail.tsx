@@ -10,12 +10,21 @@ const db = getFirestore();
 export default function SignUpButtonEmail() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [error, setError] = useState(null);
 
   const signUpWithEmail = async (e) => {
     e.preventDefault();
+
+    // Check if passwords match
+    if(password !== confirmPassword) {
+      const errorMsg = 'Passwords do not match.';
+      setError(errorMsg);
+      toast.error(errorMsg);
+      return;
+    }
 
     try {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
@@ -72,6 +81,13 @@ export default function SignUpButtonEmail() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          required
+        />
+        <input
+          type="password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          placeholder="Confirm Password"
           required
         />
         <button type="submit">Sign Up</button>

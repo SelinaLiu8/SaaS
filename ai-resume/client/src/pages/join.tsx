@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { UserContext } from '../../lib/context';
-import SignUpButtonGoogle from '../../components/sign_up/SignUpButtonGoogle';
-import SignUpButtonEmail from '../../components/sign_up/SignUpButtonEmail';
+import SignUpButtonGoogle from '../../components/join/SignUpButtonGoogle';
+import SignUpButtonEmail from '../../components/join/SignUpButtonEmail';
 
 export default function Join() {
     const router = useRouter();

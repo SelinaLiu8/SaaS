@@ -33,7 +33,7 @@ const Navbar :React.FC<LoginProps> = ({ className, children }) => {
           <Link href="/" className="nav-item"><button className='btn generate-btn'>GENERATE</button></Link>
         </li>
         <li>
-          <Login {...className} children={undefined} className='nav-item'/>
+          <Login {...className} className='nav-item'>{children}</Login>
         </li>
       </ul>
       {children}

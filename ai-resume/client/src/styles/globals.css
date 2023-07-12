@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-  --color-bg: #eef0f1;
-  --color-text: #08090a;
+  --gradient-bg: linear-gradient(to bottom right, #48287C, #732B98, #64106B, #4B2878);
+  --color-text: #fff;
   --color-blue: #3b49df;
   --color-red: #df3b3b;
   --color-green: #3bdf72;
   --color-gray: #b5bdc4;
 }
-html,
+
 body {
   padding: 0;
   margin: 0;
   font-family: 'Noto Sans', sans-serif;
-  background-color: var(--color-bg);
+  background: var(--gradient-bg);
   color: var(--color-text);
   margin-top: 50px;
 }
@@ -64,7 +64,7 @@ code {
 .navbar {
   height: 70px;
   width: 100%;
-  background: white;
+  background: black;
   color: var(--colors-text);
   position: fixed;
   top: 0;
@@ -94,6 +94,10 @@ code {
 .navbar li {
   border-radius: 50%;
   
+}
+
+.logo {
+  justify-self: flex-start;
 }
 
 /* Buttons */
@@ -166,37 +170,10 @@ button.btn-logo {
   padding: 0.5rem 1rem;
 }
 
-/* Cards */
-
-.card {
-  padding: 2rem;
-  margin: 1rem 0;
-  background-color: white;
-  border: 1px solid var(--color-gray);
-  border-radius: 8px;
-}
-
-.card footer {
-  display: flex;
-}
-
-.card-img-center {
-  width:20%;
-  display:block;
-  margin:auto;
-  border-radius: 50%;
-  max-width: 150px;
-}
-
-.card-info {
-  color: white;
-  background: var(--color-blue);
-}
-
 /* Loader */
 
 .loader {
-  border: 10px solid var(--color-bg); 
+  border: 10px solid var(--gradient-bg); 
   border-top: 10px solid var(--color-blue); 
   border-radius: 50%;
   width: 50px;
@@ -269,4 +246,9 @@ input[type="file"] {
   position: absolute;
   top: 100%;
   left: 0;
+}
+
+/* ========== HOME ========== */
+.home-page {
+
 }

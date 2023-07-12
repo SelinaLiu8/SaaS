@@ -5,7 +5,7 @@ import { UserContext } from '../lib/context';
 import { useUserData } from '../lib/hooks'; // Assuming the hook is defined here
 import ProfileImg from './ProfileImg';
 import DropdownMenu from './DropdownMenu';
-import Login from './login'
+import Login from './LoginButton'
 import dynamic from 'next/dynamic'
 
 interface LoginProps {

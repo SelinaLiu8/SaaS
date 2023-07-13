@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import React, { useState } from 'react'
-import UseSavedResumeCheckbox from '../../components/UseSavedResume'
+import UseSavedResumeCheckbox from '../../components/resume/UseSavedResume'
 
 const inter = Inter({ subsets: ['latin'] })
 

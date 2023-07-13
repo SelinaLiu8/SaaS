@@ -3,7 +3,7 @@ import AuthCheck from '../../../components/AuthCheck';
 import { useUserData } from '../../../lib/hooks';
 import UserProfileImage from '../../../components/ProfileImg';
 import ResetPasswordButton from '../../../components/ResetPassword';
-import ResumeUploader from '../../../components/ResumeUploader';
+import ResumeUploader from '../../../components/resume/ResumeUploader';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import { getFirestore, doc } from 'firebase/firestore';
 

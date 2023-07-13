@@ -9,9 +9,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const userData = useUserData();
   return (
     <UserContext.Provider value={userData}>
-      <NavBar>
+      <NavBar/>
         <Component {...pageProps} />
-      </NavBar>
       <Toaster />
     </UserContext.Provider>
   );

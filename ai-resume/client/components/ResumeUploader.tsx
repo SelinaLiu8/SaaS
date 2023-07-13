@@ -4,10 +4,11 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import fetchResume from './FetchResume';
 
 function ResumeUploader({ user }) {
-    const [isUploading, setUploading] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
     const [downloadUrl, setDownloadUrl] = useState(null);
-    let hasUploaded: boolean = false;
-    // Fetch the resume link whenever the component mounts or user changes
+    const [useSavedResume, setUseSavedResume] = useState(false);
+    let hasUploaded = false;
+
     useEffect(() => {
         const fetchResumeLink = async () => {
             const url = await fetchResume(user);
@@ -23,7 +24,7 @@ function ResumeUploader({ user }) {
         const storageRef = ref(storage, 'resume/' + user.uid + '/' + file.name);
         const uploadTask = uploadBytesResumable(storageRef, file);
 
-        setUploading(true);
+        setIsUploading(true);
 
         uploadTask.on('state_changed', 
             (snapshot) => {
@@ -31,30 +32,51 @@ function ResumeUploader({ user }) {
             }, 
             (error) => {
                 console.error(error);
-                setUploading(false);
+                setIsUploading(false);
             }, 
             () => {
-                // Handle successful uploads on complete
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     console.log('File available at', downloadURL);
-                    setDownloadUrl(downloadURL); // Update state with download URL
-                    setUploading(false);
+                    setDownloadUrl(downloadURL);
+                    setIsUploading(false);
                 });
             }
         );
+    };
+
+    const handleCheckboxChange = (event) => {
+        setUseSavedResume(event.target.checked);
     };
 
     return (
         <div className='box'>
             <input type="file" id="resume-upload" onChange={onFileChange} accept=".pdf" style={{display: 'none'}} />
             <label htmlFor="resume-upload" className="btn">Upload Resume</label>
+            
             {isUploading && <p>Uploading...</p>}
             {hasUploaded && !isUploading && !downloadUrl && <p>Upload failed. Please try again.</p>}
-            {!hasUploaded && !downloadUrl && <p>No resume uploaded yet.</p>}
-            {!hasUploaded && downloadUrl && <p><a href={downloadUrl} target="_blank" rel="noopener noreferrer">View file</a></p>}
-            {hasUploaded && downloadUrl && <p>File uploaded successfully. <a href={downloadUrl} target="_blank" rel="noopener noreferrer">View file</a></p>}
+            
+            {useSavedResume && downloadUrl && (
+                <p>
+                    Resume from saved file:
+                    <a href={downloadUrl} target="_blank" rel="noopener noreferrer">
+                        View file
+                    </a>
+                </p>
+            )}
+            
+            {!useSavedResume && !downloadUrl && <p>No resume uploaded yet.</p>}
+            {!useSavedResume && downloadUrl && (
+                <p>
+                    Uploaded resume:
+                    <a href={downloadUrl} target="_blank" rel="noopener noreferrer">
+                        View file
+                    </a>
+                </p>
+            )}
         </div>
     );
 }
 
 export default ResumeUploader;
+

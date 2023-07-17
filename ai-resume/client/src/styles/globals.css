@@ -82,7 +82,7 @@ code {
   width: 100%;
   background: black;
   color: var(--colors-text);
-  position: sticky;
+  position: fixed;
   top: 0;
   padding: 0 10vw;
   font-weight: bold;
@@ -158,9 +158,27 @@ button[disabled]{
   color: white;
 }
 
+.btn-blue:hover, 
+.btn-b:focus {
+  animation: pulse 1s;
+  box-shadow: 0 0 0 2em transparent;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--color-blue); }
+}
+
 .btn-pink {
+  background: transparent;
+  border: var(--color-pink) solid;
+  color: var(--color-pink);
+}
+
+.btn-pink:hover {
   background-color: var(--color-pink);
   color: var(--color-white);
+  box-shadow: 0 0 10px 10px rgba(237, 61, 99, 0.2);
+  transition: 0.3s;
 }
 
 .btn-green {
@@ -264,9 +282,20 @@ input[type="file"] {
   left: 0;
 }
 
+/* Animation */
+@keyframes slidebg {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position:20vw;
+  }
+}
+
 /* ========== HOME ========== */
 .home-page {
   text-align: center;
+  padding-top: 100px;
 }
 
 .home-btn {
@@ -342,4 +371,31 @@ input[type="file"] {
 
 .custom-shape-divider-top-1689553927 .shape-fill {
   fill: #551972;
+}
+
+/* ========== LOGIN ========== */
+.login-page {
+  padding-top: 70px;
+  background: var(--gradient-section);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background: var(--color-text);
+  border-radius: 30px;
+  box-shadow: var(--box-shadow-black);
+}
+
+.login-top {
+  background: var(--gradient-bg);
+  padding: 3rem;
+  border-radius: 30px 30px 0 0;
+  text-align: center;
+}
+
+.login-bottom {
+  padding: 3rem;
 }

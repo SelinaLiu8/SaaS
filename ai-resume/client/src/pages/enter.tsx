@@ -13,16 +13,24 @@ export default function Enter() {
   }
 
   return (
-    <main>
-      {user 
-        ? <SignOutButton /> 
-        : (
-          <div>
-            <SignInButton />
-            <SignInWithEmail />
-            <button onClick={goToJoin}>Join</button>
-          </div>
-        )}
-    </main>
+    <div className='login-page'>
+      <div className='login-box'>
+        <div className='login-top'>
+          <h1>Welcome to CL.AI</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+        </div>
+        <div className='login-bottom'>
+          {user 
+            ? <SignOutButton /> 
+            : (
+              <div>
+                <SignInButton/>
+                <SignInWithEmail />
+                <button onClick={goToJoin}>Join</button>
+              </div>
+            )}
+        </div>
+      </div>
+    </div>
   );
 }

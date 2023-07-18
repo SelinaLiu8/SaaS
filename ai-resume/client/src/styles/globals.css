@@ -204,6 +204,16 @@ button[disabled]{
   padding: 0.5rem 1rem;
 }
 
+button:active {
+  transform: scale(0.95);
+  box-shadow: none;
+  transform: translateY(0.25rem);
+}
+
+.btn-pink:active {
+  box-shadow: none;
+}
+
 /* Loader */
 
 .loader {
@@ -299,18 +309,19 @@ input[type="file"] {
 }
 
 .home-btn {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+
 }
 
 .home-top {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.start-btn {
-  position: absolute;
+.start-link {
   bottom: 10rem;
+  justify-self: flex-end;
 }
 
 .home-title {
@@ -334,6 +345,9 @@ input[type="file"] {
 .cover-letter-steps {
   height: 100vh;
   padding-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cover-letter-steps h3 {
@@ -375,7 +389,6 @@ input[type="file"] {
 
 /* ========== LOGIN ========== */
 .login-page {
-  padding-top: 70px;
   background: var(--gradient-section);
   height: 100vh;
   display: flex;

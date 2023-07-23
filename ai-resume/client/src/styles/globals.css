@@ -357,6 +357,8 @@ input[type="file"] {
 .cover-letter-steps textarea {
   margin: 2rem 0;
   border-radius: 30px;
+  padding: 10px;
+  resize: vertical;
 }
 
 /* Bottom */

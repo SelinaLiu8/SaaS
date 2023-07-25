@@ -19,7 +19,7 @@ export default function Home() {
   const handleGenerateClick = async () => {
     const user = auth.currentUser;
     const idToken = await user.getIdToken(true);
-    const selfDescription = document.getElementById('self-description').value;
+    const additionalInfo = document.getElementById('additional-information').value;
     const jobDescription = document.getElementById('job-description').value;
     const response = await fetch('/api/generate', {
       method: 'POST',
@@ -28,7 +28,7 @@ export default function Home() {
         'Authorization': `Bearer ${idToken}`,
       },
       body: JSON.stringify({
-        selfDescription,
+        additionalInfo,
         jobDescription,
         useSavedResume,
       }),
@@ -77,7 +77,7 @@ export default function Home() {
           <li className='cover-letter-steps' id='step3'>
             <h2>3</h2>
             <h3>Additional comments to help with our AI</h3>
-            <textarea name="self description" id="self-description" cols="100" rows="25"></textarea>
+            <textarea name="self description" id="additional-information" cols="100" rows="25"></textarea>
             <button className='btn btn-pink home-btn' onClick={handleGenerateClick}>Generate</button>
           </li>
         </ul>

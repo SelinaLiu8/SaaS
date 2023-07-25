@@ -34,8 +34,15 @@ export default async function handler(req, res) {
     // Get the job discription
     const { jobDescription } = req.body;
 
+    // Get additional information
+    const { additionalInfo } = req.body;
+
     // Combine resumeText and additionalComments
-    const fullContent = `I would like your to write a cover letter that will get the person with this reume:\n${resumeText}\nan interview for this job posting:\n${jobDescription}\n You can only use the information in the resume to write the cover letter.\n`;
+    const fullContent = `I would like your to write a cover letter that will get the person with this reume:\n${resumeText}\nan interview for this job posting:\n${jobDescription}\n You can only use the information in the resume to write the cover letter and
+    these additional facts about the job canadate:\n${additionalInfo}\n`;
+
+    res.status(200).json({ message: 'Testing mode. Further execution stopped.' });
+    return;
 
     // Use fullContent as a prompt to OpenAI API
     const chatCompletion = await openai.createChatCompletion({

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { auth } from '../../lib/firebase';
+import { auth } from '../../lib/firebaseClient';
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import toast from 'react-hot-toast';
 

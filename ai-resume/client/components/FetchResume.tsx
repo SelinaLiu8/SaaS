@@ -1,5 +1,5 @@
 import { ref, getDownloadURL } from "firebase/storage";
-import { storage } from "../lib/firebase";
+import { storage } from "../lib/firebaseClient";
 
 const fetchResume = async (user) => {
   const storageRef = ref(storage, `resume/${user.uid}/resume.pdf`);

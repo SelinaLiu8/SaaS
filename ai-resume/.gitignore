@@ -25,3 +25,6 @@ yarn-error.log*
 *.cache
 node_modules/
 env/
+firebaseClient.ts
+firebaseAdmin.ts
+.env

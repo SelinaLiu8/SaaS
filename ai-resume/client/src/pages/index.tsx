@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import React, { useState } from 'react'
 import UseSavedResumeCheckbox from '../../components/UseSavedResume'
 import firebase from 'firebase/app';
-import { auth } from '../../lib/firebase';
+import { auth } from '../../lib/firebaseClient';
 import 'firebase/auth';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -19,24 +19,27 @@ export default function Home() {
   const handleGenerateClick = async () => {
     const user = auth.currentUser;
     const idToken = await user.getIdToken(true);
-
+    const selfDescription = document.getElementById('self-description').value;
+    const jobDescription = document.getElementById('job-description').value;
     const response = await fetch('/api/generate', {
       method: 'POST',
       headers: {
-        'uid': `${user.uid}`,
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${idToken}`,
       },
       body: JSON.stringify({
-        /* Your data here. This might include the contents of the
-           textareas and the useSavedResume state. */
+        selfDescription,
+        jobDescription,
+        useSavedResume,
       }),
     });
-
+  
     const data = await response.json();
-
+  
     // Handle the response data
     console.log(data);
   };
+  
   return (
     <div className='home-page' >
       <div className='home-top'>

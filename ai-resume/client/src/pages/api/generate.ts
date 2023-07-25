@@ -30,7 +30,6 @@ export default async function handler(req, res) {
 
     // Convert PDF to text
     const resumeText = await parsePDF(dataBuffer);
-    console.log(typeof(resumeText));
 
     // Get the job discription
     const { jobDescription } = req.body;
@@ -39,7 +38,6 @@ export default async function handler(req, res) {
     const fullContent = `I would like your to write a cover letter that will get the person with this reume:\n${resumeText}\nan interview for this job posting:\n${jobDescription}\n You can only use the information in the resume to write the cover letter.\n`;
 
     // Use fullContent as a prompt to OpenAI API
-    console.log("before OpenAI API");
     const chatCompletion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [{

@@ -50,7 +50,7 @@ export default function Home() {
             <h2>3</h2>
             <h3>Additional comments to help with our AI</h3>
             <textarea name="self description" id="self-description" cols="100" rows="25"></textarea>
-            <button className='btn btn-pink home-btn'>Generate</button>
+            <Link href='/coverletter-view' scroll={false}><button className='btn btn-pink home-btn'>Generate</button></Link>
           </li>
         </ul>
       </div>

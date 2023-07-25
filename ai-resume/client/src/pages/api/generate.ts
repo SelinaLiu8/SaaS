@@ -22,9 +22,7 @@ export default async function handler(req, res) {
 
   try {
     // Get the file from Firebase Storage
-    console.log(process.env)
     const decodedToken = await admin.auth().verifyIdToken(idToken);
-    console.log(decodedToken);
     const uid = decodedToken.uid; // Here's the Firebase UID
     const bucket = admin.storage().bucket();
     const file = bucket.file(`resume/${uid}/resume.pdf`);
@@ -35,17 +33,17 @@ export default async function handler(req, res) {
     const resumeText = data.text;
 
     // Combine resumeText and additionalComments
-    const fullContent = `I would like your to write a cover letter that will get the person with this reume:\n${resumeText}\nan interview for this job posting:\n${resumeText}\n You can only use the information in the resume to write the cover letter and\nthese additional facts about the job canadate:\n${req.body.additionalComments}\n.`;
+    const fullContent = `I would like your to write a cover letter that will get the person with this reume:\n${resumeText}\nan interview for this job posting:\n${resumeText}\n You can only use the information in the resume to write the cover letter.\n`;
 
     // Use fullContent as a prompt to OpenAI API
     const chatCompletion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [{
         role: "user", 
-        content: `I would like your to write a cover letter that will get the person with this reume:\n${resumeText}\nan interview for this job posting:\n${resumeText}\n You can only use the information in the resume to write the cover letter.`,
+        content: fullContent,
       }],
     });
-
+    console.log("chat completion");
     res.status(200).json({ message: chatCompletion.data.choices[0].message });
     console.log(chatCompletion.data.choices[0].message);
   } catch (error) {

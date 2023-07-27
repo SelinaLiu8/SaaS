@@ -4,6 +4,7 @@
   --gradient-bg: linear-gradient(to bottom right, #48287C, #732B98, #64106B, #4B2878);
   --gradient-section: linear-gradient(#000000, #551972);
   --box-shadow-black: 0 0 10px 10px rgba(0, 0, 0, 0.5);
+  --box-shadow-pink: 0 0 10px 10px rgba(237, 61, 99, 0.2);
   --color-text: #fff;
   --color-blue: #1DA2FC;
   --color-pink: #ED3D63;
@@ -177,7 +178,7 @@ button[disabled]{
 .btn-pink:hover {
   background-color: var(--color-pink);
   color: var(--color-white);
-  box-shadow: 0 0 10px 10px rgba(237, 61, 99, 0.2);
+  box-shadow: var(--box-shadow-pink);
   transition: 0.3s;
 }
 
@@ -413,4 +414,38 @@ input[type="file"] {
 
 .login-bottom {
   padding: 3rem;
+}
+
+/* ========== CL VIEW ========== */
+
+.coverletter-view-page {
+  background: var(--gradient-section);
+  height: 100vh;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coverletter-view {
+  background: var(--color-text);
+  border: dashed var(--color-pink) 6px;
+  box-shadow: var(--box-shadow-pink);
+  width: 70%;
+  padding: 5rem;
+  margin-top: 2rem;
+}
+
+.coverletter-text {
+  color: black;
+}
+
+.coverletter-p {
+  padding-top: 3rem;
+}
+
+.download-btns {
+  padding-top: 2rem;
+  display: flex;
+  gap: 3rem;
 }

@@ -45,7 +45,7 @@ export default function Home() {
       <div className='home-top'>
         <h1 className='title home-title'><strong>COVER LETTER</strong> <br/>AI Generator</h1>
         <p className='home-statement'>READY TO GENERATE YOUR COVER LETTER IN UNDER A MINUTE TO BOOST YOUR CHANCES BY 30%?</p>
-        <Link href='#step1' scroll={false}><button className='btn btn-blue home-btn start-btn'>Get Started Right Away!</button></Link>
+        <Link href='#step1' scroll={false} className='start-link'><button className='btn btn-blue home-btn start-btn'>Get Started Right Away!</button></Link>
       </div>
       <div className="custom-shape-divider-top-1689553257">
           <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">

@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { Inter } from 'next/font/google'
 import React, { useState } from 'react'
 import UseSavedResumeCheckbox from '../../components/UseSavedResume'
+import firebase from 'firebase/app';
+import { auth } from '../../lib/firebaseClient';
+import 'firebase/auth';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,12 +15,37 @@ export default function Home() {
   const handleCheckboxChange = (event) => {
     setUseSavedResume(event.target.checked);
   };
+
+  const handleGenerateClick = async () => {
+    const user = auth.currentUser;
+    const idToken = await user.getIdToken(true);
+    const additionalInfo = document.getElementById('additional-information').value;
+    const jobDescription = document.getElementById('job-description').value;
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${idToken}`,
+      },
+      body: JSON.stringify({
+        additionalInfo,
+        jobDescription,
+        useSavedResume,
+      }),
+    });
+  
+    const data = await response.json();
+  
+    // Handle the response data
+    console.log(data);
+  };
+  
   return (
     <div className='home-page' >
       <div className='home-top'>
         <h1 className='title home-title'><strong>COVER LETTER</strong> <br/>AI Generator</h1>
         <p className='home-statement'>READY TO GENERATE YOUR COVER LETTER IN UNDER A MINUTE TO BOOST YOUR CHANCES BY 30%?</p>
-        <Link href='#step1' scroll={false}><button className='btn btn-blue home-btn start-btn'>Get Started Right Away!</button></Link>
+        <Link href='#step1' scroll={false} className='start-link'><button className='btn btn-blue home-btn start-btn'>Get Started Right Away!</button></Link>
       </div>
       <div className="custom-shape-divider-top-1689553257">
           <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -49,8 +77,8 @@ export default function Home() {
           <li className='cover-letter-steps' id='step3'>
             <h2>3</h2>
             <h3>Additional comments to help with our AI</h3>
-            <textarea name="self description" id="self-description" cols="100" rows="25"></textarea>
-            <Link href='/coverletter-view' scroll={false}><button className='btn btn-pink home-btn'>Generate</button></Link>
+            <textarea name="self description" id="additional-information" cols="100" rows="25"></textarea>
+            <button className='btn btn-pink home-btn' onClick={handleGenerateClick}>Generate</button>
           </li>
         </ul>
       </div>

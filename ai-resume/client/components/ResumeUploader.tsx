@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { storage } from "../lib/firebase";
+import { storage } from "../lib/firebaseClient";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import fetchResume from './FetchResume';
 

@@ -1,4 +1,4 @@
-import { auth, googleAuthProvider } from '../../lib/firebase';
+import { auth, googleAuthProvider } from '../../lib/firebaseClient';
 import { signInWithPopup } from 'firebase/auth';
 import Image from 'next/image';
 

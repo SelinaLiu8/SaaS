@@ -1,4 +1,4 @@
-import { auth } from '../../lib/firebase';
+import { auth } from '../../lib/firebaseClient';
 import toast from 'react-hot-toast';
 
 export default function SignOutButton() {

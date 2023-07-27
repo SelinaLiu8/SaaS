@@ -77,8 +77,8 @@ export default function Home() {
           <li className='cover-letter-steps' id='step3'>
             <h2>3</h2>
             <h3>Additional comments to help with our AI</h3>
-            <textarea name="self description" id="additional-information" cols="100" rows="25"></textarea>
-            <button className='btn btn-pink home-btn' onClick={handleGenerateClick}>Generate</button>
+            <textarea name="additional description" id="additional-information" cols="100" rows="25"></textarea>
+            <Link href='/coverletter-view' scroll={false}><button className='btn btn-pink home-btn' onClick={handleGenerateClick}>Generate</button></Link>
           </li>
         </ul>
       </div>

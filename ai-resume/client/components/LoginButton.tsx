@@ -5,6 +5,7 @@ import { UserContext } from '../lib/context';
 import { useUserData } from '../lib/hooks';
 import UserProfileImage from './ProfileImg';
 import DropdownMenu from './DropdownMenu'; 
+import SignOutButton from '../components/enter/SignOutButton';
 
 export default function Login({ children }: { children: ReactNode }) {
     const { user, username } = useUserData();
@@ -15,9 +16,7 @@ export default function Login({ children }: { children: ReactNode }) {
             <>
             <ul>
               <li>
-                <Link href="/enter">
-                  <button className="btn-blue">Log out</button>
-                </Link>
+                <SignOutButton/>
               </li>
               <li>
                 <Link href="/profile">

@@ -188,8 +188,8 @@ button[disabled]{
 }
 
 .btn-google {
-  background-color: white;
-  color: var(--color-text);
+  background-color: #ededed;
+  color: black;
 }
 
 .btn-google img {
@@ -414,7 +414,10 @@ input[type="file"] {
 
 .login-bottom {
   padding: 3rem;
+  display: flex;
 }
+
+
 
 /* ========== CL VIEW ========== */
 

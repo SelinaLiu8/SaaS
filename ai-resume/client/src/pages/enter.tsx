@@ -29,14 +29,16 @@ export default function Enter() {
         </div>
         <div className='login-bottom'>
           <div className='login-left'>
+            <p className='login-subtitle'>Login with Email</p>
             <SignInWithEmail />
           </div>
           <div className='login-right'>
+            <p className='login-subtitle'>Login with other menthods</p>
             <SignInButton/>
           </div>
         </div>
-        <div >
-              <button onClick={goToJoin}>Join</button>
+        <div className='signup-line'>
+          <p className='signup-text'>Don&apos;t have an account yet?<button onClick={goToJoin} className='signup-btn'>Sign Up Here</button></p>
         </div>
       </div>
     </div>

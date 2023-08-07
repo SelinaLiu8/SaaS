@@ -29,8 +29,8 @@ export default function SignInWithEmail() {
 
   return (
     <form onSubmit={signInWithEmail}>
-      <input name='email' type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
-      <input name='password' type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+      <input className='signin-field' name='email' type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <input className='signin-field' name='password' type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
       <button type='submit'>Sign In</button>
       <button onClick={resetPassword}>Reset Password</button>
     </form>

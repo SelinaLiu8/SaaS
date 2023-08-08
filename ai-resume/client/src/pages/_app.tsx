@@ -5,6 +5,8 @@ import { UserContext } from '../../lib/context';
 import { useUserData } from '../../lib/hooks';
 import { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import { Provider } from 'react-redux';
+import store from '../../state_management/Store';
 
 export default function App({ Component, pageProps }: AppProps) {
   const userData = useUserData();
@@ -12,10 +14,13 @@ export default function App({ Component, pageProps }: AppProps) {
   const shouldShowHeader = !isLoginPage;
 
   return (
-    <UserContext.Provider value={userData}>
-      {shouldShowHeader && <NavBar />}
+    <Provider store={store}>
+      <UserContext.Provider value={userData}>
+        {shouldShowHeader && <NavBar />}
         <Component {...pageProps} />
-      <Toaster />
-    </UserContext.Provider>
+        <Toaster />
+      </UserContext.Provider>
+    </Provider>
+
   );
 }

@@ -45,6 +45,7 @@ export default async function handler(req, res) {
     // res.status(200).json({ message: 'Testing mode. Further execution stopped.' });
     // return;
     console.log("after");
+
     // Use fullContent as a prompt to OpenAI API
     const chatCompletion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",

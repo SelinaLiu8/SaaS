@@ -21,6 +21,7 @@ export default async function handler(req, res) {
   }
 
   try {
+    console.log("before");
     // Get the file from Firebase Storage
     const decodedToken = await admin.auth().verifyIdToken(idToken);
     const uid = decodedToken.uid; // Here's the Firebase UID
@@ -43,6 +44,7 @@ export default async function handler(req, res) {
 
     // res.status(200).json({ message: 'Testing mode. Further execution stopped.' });
     // return;
+    console.log("after");
 
     // Use fullContent as a prompt to OpenAI API
     const chatCompletion = await openai.createChatCompletion({

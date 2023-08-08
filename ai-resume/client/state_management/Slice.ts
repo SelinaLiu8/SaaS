@@ -20,13 +20,13 @@ const appSlice = createSlice({
     initialState,
     reducers: {
         setSelfDescription: (state, action: PayloadAction<string>) => {
-            state.CoverLetter = action.payload;
+            state.SelfDescription = action.payload;
         },
         setJobDescription: (state, action: PayloadAction<string>) => {
-            state.CoverLetter = action.payload;
+            state.JobDescription = action.payload;
         },
         setAdditionalInfo: (state, action: PayloadAction<string>) => {
-            state.CoverLetter = action.payload;
+            state.AddtionalInfo = action.payload;
         },
         setCoverLetter: (state, action: PayloadAction<string>) => {
             state.CoverLetter = action.payload;

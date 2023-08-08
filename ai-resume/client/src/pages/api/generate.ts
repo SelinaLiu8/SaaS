@@ -21,6 +21,7 @@ export default async function handler(req, res) {
   }
 
   try {
+    console.log("before");
     // Get the file from Firebase Storage
     const decodedToken = await admin.auth().verifyIdToken(idToken);
     const uid = decodedToken.uid; // Here's the Firebase UID
@@ -41,9 +42,9 @@ export default async function handler(req, res) {
     const fullContent = `I would like your to write a cover letter that will get the person with this reume:\n${resumeText}\nan interview for this job posting:\n${jobDescription}\n You can only use the information in the resume to write the cover letter and
     these additional facts about the job canadate:\n${additionalInfo}\n`;
 
-    res.status(200).json({ message: 'Testing mode. Further execution stopped.' });
-    return;
-
+    // res.status(200).json({ message: 'Testing mode. Further execution stopped.' });
+    // return;
+    console.log("after");
     // Use fullContent as a prompt to OpenAI API
     const chatCompletion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",

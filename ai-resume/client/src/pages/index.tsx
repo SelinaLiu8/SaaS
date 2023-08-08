@@ -1,23 +1,43 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Inter } from 'next/font/google'
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState, ChangeEvent, useRef, useEffect } from 'react'
 import UseSavedResumeCheckbox from '../../components/UseSavedResume'
 import firebase from 'firebase/app';
 import { auth } from '../../lib/firebaseClient';
 import 'firebase/auth';
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../../state_management/Store'
+import { setSelfDescription, setJobDescription, setAdditionalInfo, setCoverLetter } from '../../state_management/Slice'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const Home: React.FC = () => {
-  //initialize states
   const [useSavedResume, setUseSavedResume] = useState(false);
-  const [selfDescriptionValue, setSelfDescriptionValue] = useState('');
-  const [jobDescriptionValue, setJobDescriptionValue] = useState('');
-  const [addDescriptionValue, setAddDescriptionValue] = useState('');
   const [isButton1Disabled, setIsButton1Disabled] = useState(true);
   const [isButton2Disabled, setIsButton2Disabled] = useState(true);
   const [isButton3Disabled, setIsButton3Disabled] = useState(true);
+
+  const selfDescription = useSelector((state: RootState) => state.app.SelfDescription);
+  const jobDescription = useSelector((state: RootState) => state.app.JobDescription);
+  const additionalInfo = useSelector((state: RootState) => state.app.AddtionalInfo);
+  const CLresponse = useSelector((state: RootState) => state.app.CoverLetter); 
+
+  const dispatch = useDispatch();
+
+  // Use useRef for storing refs to state values
+  const additionalInfoRef = useRef(additionalInfo);
+  const jobDescriptionRef = useRef(jobDescription);
+  const selfDescriptionRef = useRef(selfDescription);
+  const responseRef = useRef(CLresponse);
+
+  // Update the refs whenever the Redux state changes
+  useEffect(() => {
+    additionalInfoRef.current = additionalInfo;
+    jobDescriptionRef.current = jobDescription;
+    selfDescriptionRef.current = selfDescription;
+    responseRef.current = CLresponse;
+  }, [additionalInfo, jobDescription, selfDescription, CLresponse]); // Include CLresponse in dependency array
 
   //resume handler
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,8 +48,9 @@ const Home: React.FC = () => {
   const handleGenerateClick = async () => {
     const user = auth.currentUser;
     const idToken = await user.getIdToken(true);
-    const additionalInfo = addDescriptionValue;
-    const jobDescription = jobDescriptionValue;
+    const additionalInfoValue = additionalInfoRef.current;
+    const jobDescriptionValue = jobDescriptionRef.current;
+    console.log("wait");
     const response = await fetch('/api/generate', {
       method: 'POST',
       headers: {
@@ -37,41 +58,46 @@ const Home: React.FC = () => {
         'Authorization': `Bearer ${idToken}`,
       },
       body: JSON.stringify({
-        additionalInfo,
-        jobDescription,
+        additionalInfoValue,
+        jobDescriptionValue,
         useSavedResume,
       }),
     });
   
     const data = await response.json();
-  
+    dispatch(setCoverLetter(data));
     // Handle the response data
     console.log(data);
+    // console.log(responseRef.current);
   };
 
   //input boxes handler
   const handleSelfDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const self = event.target.value;
 
-    setSelfDescriptionValue(self);
+    dispatch(setSelfDescription(self));
 
     setIsButton1Disabled(self.trim() === '');
-    setIsButton3Disabled(self.trim() === '' || jobDescriptionValue.trim() === '');
+    setIsButton3Disabled(self.trim() === '' || jobDescriptionRef.current.trim() === '');
+
+    console.log(selfDescriptionRef.current);
   }
 
   const handleJobDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const job = event.target.value;
 
-    setJobDescriptionValue(job);
+    dispatch(setJobDescription(job));
 
     setIsButton2Disabled(job.trim() === '');
-    setIsButton3Disabled(selfDescriptionValue.trim() === '' || job.trim() === '');
+    setIsButton3Disabled(selfDescriptionRef.current.trim() === '' || job.trim() === '');
+
+    console.log(jobDescriptionRef.current);
   }
 
   const handleAddDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const add = event.target.value;
 
-    setAddDescriptionValue(add);
+    dispatch(setAdditionalInfo(add));
   }
   
   return (
@@ -104,7 +130,7 @@ const Home: React.FC = () => {
               id="self-description" 
               cols={100}
               rows={25}
-              value={selfDescriptionValue}
+              value={useSelector((state: RootState) => state.app.SelfDescription)}
               onChange={handleSelfDescription}
               ></textarea>
             <Link href='#step2' scroll={false}>
@@ -122,7 +148,7 @@ const Home: React.FC = () => {
               id="job-description" 
               cols={100}
               rows={25}
-              value={jobDescriptionValue}
+              value={useSelector((state: RootState) => state.app.JobDescription)}
               onChange={handleJobDescription}
               ></textarea>
             <Link href='#step3' scroll={false}>
@@ -140,15 +166,16 @@ const Home: React.FC = () => {
               id="add-description" 
               cols={100}
               rows={25}
-              value={addDescriptionValue}
+              value={useSelector((state: RootState) => state.app.AddtionalInfo)}
               onChange={handleAddDescription}
               ></textarea>
-            <Link href='/coverletter-view' scroll={false}>
+            {/* <Link href='/coverletter-view' scroll={false}> */}
               <button
                   className={`btn ${isButton3Disabled ? 'btn-disabled' : 'btn-pink'} home-btn`}
                   disabled={isButton3Disabled}
+                  onClick={handleGenerateClick}
                 >Generate</button>
-            </Link>
+            {/* </Link> */}
           </li>
         </ul>
       </div>

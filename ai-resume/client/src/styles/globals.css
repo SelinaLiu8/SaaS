@@ -188,8 +188,8 @@ button[disabled]{
 }
 
 .btn-google {
-  background-color: white;
-  color: var(--color-text);
+  background-color: #ededed;
+  color: black;
 }
 
 .btn-google img {
@@ -403,6 +403,9 @@ input[type="file"] {
   background: var(--color-text);
   border-radius: 30px;
   box-shadow: var(--box-shadow-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .login-top {
@@ -413,8 +416,43 @@ input[type="file"] {
 }
 
 .login-bottom {
-  padding: 3rem;
+  display: flex;
+  align-items: baseline;
 }
+
+.login-left {
+  margin: 3rem;
+  width: 50%;
+}
+
+.logn-right {
+  margin: 3rem;
+  width: 50%;
+}
+
+.login-subtitle {
+  color: black;
+}
+
+.signup-text {
+  color:#000000;
+  display: flex;
+}
+
+.signup-btn {
+  background-color: transparent;
+  padding: 0;
+  padding-left: 1rem;
+  color: var(--color-blue);
+}
+
+.signin-field {
+  margin-bottom: 1.5rem;
+  padding: 10px 10px;
+  background-color: #e8e8e8;
+  border-radius: 30px;
+}
+
 
 /* ========== CL VIEW ========== */
 

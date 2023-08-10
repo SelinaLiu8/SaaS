@@ -65,10 +65,9 @@ const Home: React.FC = () => {
     });
   
     const data = await response.json();
-    dispatch(setCoverLetter(data));
+    dispatch(setCoverLetter(data.message));
     // Handle the response data
-    console.log(data);
-    // console.log(responseRef.current);
+    console.log(responseRef.current);
   };
 
   //input boxes handler

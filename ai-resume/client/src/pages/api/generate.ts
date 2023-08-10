@@ -44,7 +44,6 @@ export default async function handler(req, res) {
 
     // res.status(200).json({ message: 'Testing mode. Further execution stopped.' });
     // return;
-    console.log("after");
 
     // Use fullContent as a prompt to OpenAI API
     const chatCompletion = await openai.createChatCompletion({
@@ -54,7 +53,6 @@ export default async function handler(req, res) {
         content: fullContent,
       }],
     });
-    console.log("chat completion");
     res.status(200).json({ message: chatCompletion.data.choices[0].message });
     console.log(chatCompletion.data.choices[0].message);
   } catch (error) {

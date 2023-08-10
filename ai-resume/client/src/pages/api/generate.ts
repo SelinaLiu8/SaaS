@@ -47,7 +47,7 @@ export default async function handler(req, res) {
     });
     console.log("chat completion");
     res.status(200).json({ message: chatCompletion.data.choices[0].message });
-    console.log(chatCompletion.data.choices[0].message);
+    // console.log(chatCompletion.data.choices[0].message);
   } catch (error) {
     res.status(500).json({ error: error.toString(), stack: error.stack });
   }

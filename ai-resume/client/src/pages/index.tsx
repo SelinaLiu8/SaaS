@@ -35,9 +35,17 @@ export default function Home() {
     });
   
     const data = await response.json();
+<<<<<<< Updated upstream
   
     // Handle the response data
     console.log(data);
+=======
+    dispatch(setCoverLetter(data.message));
+
+    // Handle the response data
+    console.log(data.message);
+    console.log(responseRef.current);
+>>>>>>> Stashed changes
   };
   
   return (

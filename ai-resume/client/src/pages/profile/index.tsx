@@ -13,7 +13,6 @@ const db = getFirestore();
 
 export default function AdminPage(props) {
     const { user, username } = useUserData();
-
     // Firestore document to fetch
     const userDoc = user && doc(db, "users", user.uid);
   

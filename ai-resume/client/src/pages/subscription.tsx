@@ -2,6 +2,7 @@ import { auth } from '../../lib/firebaseClient';
 import React, { useState } from 'react'
 import 'firebase/auth';
 import { loadStripe } from '@stripe/stripe-js';
+import { toast } from 'react-hot-toast';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -9,9 +10,14 @@ export default function Subscription() {
   const [numCredits, setNumCredits] = useState(0);
 
   const handleSubscribeClick = async () => {
+    if (numCredits <= 0) {
+      toast.error("Please select credits");
+      return;
+    }
     const stripe = await stripePromise;
     const user = auth.currentUser;
     const idToken = await user.getIdToken(true);
+    console.log("UserID", user.uid);
     const response = await fetch('/api/start-checkout-session', {
       method: 'POST',
       headers: {

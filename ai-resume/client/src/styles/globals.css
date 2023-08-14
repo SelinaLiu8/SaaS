@@ -5,8 +5,9 @@
   --gradient-section: linear-gradient(#000000, #551972);
   --box-shadow-black: 0 0 10px 10px rgba(0, 0, 0, 0.5);
   --box-shadow-pink: 0 0 10px 10px rgba(237, 61, 99, 0.2);
+  --box-shadow-blue: 0 0 10px 10px rgba(29, 162, 252, 0.2);
   --color-text: #fff;
-  --color-blue: #1DA2FC;
+  --color-blue: #1da2fc;
   --color-pink: #ED3D63;
   --color-gray: #C6C6C6;
 }
@@ -482,4 +483,41 @@ input[type="file"] {
   padding-top: 2rem;
   display: flex;
   gap: 3rem;
+}
+
+/* ========== PROFILE ========== */
+
+.profile-page {
+  padding-top: 100px;
+}
+
+.profile-top {
+  display: flex;
+  justify-content: center;
+  gap: 10rem;
+  margin-top: 5rem;
+}
+
+.profile-top-item {
+  border: dashed 5px var(--color-blue);
+  padding: 3rem;
+  width: 15rem;
+  height: 15rem;
+  color: #000000;
+  background-color: var(--color-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--box-shadow-blue);
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.profile-top > div:nth-child(2) {
+  margin-top: 2rem;
+}
+
+.profile-top-item:hover {
+  transform: translateY(-10px);
+  transition: 0.3s;
 }

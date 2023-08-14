@@ -24,6 +24,10 @@ const Home: React.FC = () => {
   const CLresponse = useSelector((state: RootState) => state.app.CoverLetter); 
 
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+    console.log('Response:', CLresponse);
+  }, [CLresponse]);
 
   // Use useRef for storing refs to state values
   const additionalInfoRef = useRef(additionalInfo);
@@ -64,9 +68,10 @@ const Home: React.FC = () => {
       }),
     });
   
+    // Handle the response data
     const data = await response.json();
     dispatch(setCoverLetter(data.message.content));
-    // Handle the response data
+    console.log("Response:", responseRef.current);
     try {
       console.log(responseRef.current);
     }

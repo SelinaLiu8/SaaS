@@ -1,6 +1,10 @@
 import Stripe from 'stripe';
 import admin from '../../../lib/firebaseAdmin';
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('STRIPE_SECRET_KEY must be set');
+}
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {});
 
 const startCheckoutSession = async (req, res) => {
   const { userId, numCredits } = req.body;

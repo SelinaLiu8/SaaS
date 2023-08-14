@@ -25,6 +25,7 @@ export default function AdminPage(props) {
                 <p>Welcome to the Admin!</p>
                 <UserProfileImage user={user} />
                 <p>Email: {username || user?.email}</p>
+                <p>Credits: TODO</p> 
                 {userData && <p>Name: {userData?.firstName} {userData?.lastName}</p>}
                 {
                   user && <ResumeUploader user={user} />

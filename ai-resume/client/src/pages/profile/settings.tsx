@@ -12,7 +12,6 @@ export default function AdminPage(props) {
     return (
         <main>
             <AuthCheck>
-                <p>Welcome to the Admin!</p>
                 <UserProfileImage user={user} />
                 <p>Email: {username || user?.email}</p>
                 {

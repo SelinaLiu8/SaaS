@@ -33,7 +33,7 @@ html, body {
 
 
 main {
-  padding: 1rem 10vw;
+  /* padding: 1rem 10vw; */
 }
 
 /* ---------- Text ---------- */
@@ -310,10 +310,6 @@ input[type="file"] {
   padding-top: 100px;
 }
 
-.home-btn {
-
-}
-
 .home-top {
   height: 100vh;
   display: flex;
@@ -500,6 +496,7 @@ input[type="file"] {
   justify-content: center;
   gap: 10rem;
   margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 
 .profile-top-item {
@@ -524,4 +521,8 @@ input[type="file"] {
 .profile-top-item:hover {
   transform: translateY(-10px);
   transition: 0.3s;
+}
+
+.profile-bottom {
+  background: var(--gradient-section);
 }

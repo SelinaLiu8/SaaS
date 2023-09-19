@@ -178,13 +178,13 @@ const Home: React.FC = () => {
               value={useSelector((state: RootState) => state.app.AddtionalInfo)}
               onChange={handleAddDescription}
               ></textarea>
-            {/* <Link href='/coverletter-view' scroll={false}> */}
+            <Link href='/coverletter-view' scroll={false}>
               <button
                   className={`btn ${isButton3Disabled ? 'btn-disabled' : 'btn-pink'} home-btn`}
                   disabled={isButton3Disabled}
                   onClick={handleGenerateClick}
                 >Generate</button>
-            {/* </Link> */}
+            </Link>
           </li>
         </ul>
       </div>

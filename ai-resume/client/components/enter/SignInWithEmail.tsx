@@ -7,7 +7,7 @@ export default function SignInWithEmail() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const signInWithEmail = async (event: React.FormEvent<HTMLFormElement>) => {  // <-- Change here
+  const signInWithEmail = async (event: ) => {
     event.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);

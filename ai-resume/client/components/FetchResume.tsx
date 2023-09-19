@@ -1,12 +1,7 @@
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../lib/firebaseClient";
 
-interface User {
-  uid: string;
-  // other properties that you might need
-}
-
-const fetchResume = async (user: User) => {  // <-- Change here
+const fetchResume = async (user) => {
   const storageRef = ref(storage, `resume/${user.uid}/resume.pdf`);
   console.log("user", user.uid);
   console.log("path", storageRef);

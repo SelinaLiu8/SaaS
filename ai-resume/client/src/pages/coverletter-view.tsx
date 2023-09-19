@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux/es/hooks/useSelector'
 import { RootState } from '../../state_management/Store';
+import { useSelector, useDispatch } from 'react-redux'
+import { setCoverLetter } from '../../state_management/Slice'
 
 
-const coverletterView = () => {
+const coverletterView: React.FC = () => {
+  const coverLetter = useSelector((state: RootState) => state.app.CoverLetter);
 
   return (
     <div className='coverletter-view-page'>
       <div className='coverletter-view'>
-          <p className='coverletter-text'>{}</p>
+          <p className='coverletter-text'>{coverLetter}</p>
       </div>
       <p className='coverletter-p'>Your cover letter has been successfully generated!</p>
       <div className="download-btns">

@@ -18,9 +18,9 @@ export default function AdminPage(props) {
                 {
                     user?.providerData[0]?.providerId === 'password' && <ResetPasswordButton user={user} />
                 }
-                <button> 
-                    <a href="/profile/" className="button-style">Back</a>
-                </button>
+                <Link href="/profile/">
+                    <button className="button-style">Back</button>
+                </Link>         
             </AuthCheck>
         </main>
     );

@@ -3,8 +3,7 @@ import { RootState } from '../../state_management/Store';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCoverLetter } from '../../state_management/Slice'
 
-
-const coverletterView: React.FC = () => {
+const CoverletterView: React.FC = () => {  // <-- Change here
   const coverLetter = useSelector((state: RootState) => state.app.CoverLetter);
 
   return (
@@ -22,4 +21,4 @@ const coverletterView: React.FC = () => {
   )
 }
 
-export default coverletterView;
+export default CoverletterView;  // <-- Change here

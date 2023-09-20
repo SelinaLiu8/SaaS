@@ -7,7 +7,7 @@ export default function SignInWithEmail() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const signInWithEmail = async (event: ) => {
+  const signInWithEmail = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
